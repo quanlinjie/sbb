@@ -1,0 +1,46 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+	<h5 class="my-3 border-bottom pb-2">글 등록</h5>
+	<!--파일 업로드 :  enctype="multipart/form-data 추가-->
+	<form th:object="${questionForm}" method="post" enctype="multipart/form-data">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div th:replace="~{form_errors :: formErrorsFragment}"></div>
+		<div>
+			<select th:field="*{category}" class="form-select">
+				<option value="">카테고리</option>
+				<!--선택안한 비어있는값-->
+				<option value="스프링부트">스프링부트</option>
+				<option value="오라클SQL">오라클SQL</option>
+				<option value="VUEJS">VUEJS</option>
+				<option value="자유게시판">자유게시판</option>
+			</select>
+		</div>
+		<br>
+		<div class="mb-3">
+			<label for="subject" class="form-label">제목</label> <input type="text" th:field="*{subject}" class="form-control">
+		</div>
+
+		<!-- MARKDOWN EDITOR 부분 -->
+		<div class="mb-3">
+			<label for="content" class="form-label">내용</label>
+			<textarea id="markdown" type="text" th:field="*{content}" class="form-control" rows="10" autocomplete="off"></textarea>
+		</div>
+
+		<!--파일업로드버튼-->
+		<div class="mb-3">
+			<input type="file" id="file" name="file" class="form-control">
+		</div>
+		<div class="mb-3">
+			<input type="submit" value="저장하기" class="btn btn-primary my-2">
+		</div>
+	</form>
+</div>
+
+
+<script>
+	/* 마크다운 에디터 */
+	var simplemde = new SimpleMDE({
+		element : document.getElementById("markdown")
+	});
+</script>
+</html>

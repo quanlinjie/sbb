@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+	<div class="my-3 border-bottom">
+		<div>
+			<h4>회원정보</h4>
+		</div>
+
+		<form th:action="@{/user/info}" th:object="${userModifyForm}" method="post" enctype='multipart/form-data'>
+			<div th:replace="form_errors :: formErrorsFragment"></div>
+<br>
+			<div class="card" style="width:400px">
+				<div class="card-body" >
+					<img onerror="this.style.visibility='hidden'" class="profileimg" th:src="@{|/photo/${siteUser.ImageName}|}" />
+				</div>
+			</div>
+<br>
+			<div class="mb-3">
+				<label for="username" class="form-label">사용자ID</label> <input type="text" th:field="${siteUser.username}" class="form-control" readonly>
+			</div>
+			<div class="mb-3">
+				<label for="nickname" class="form-label">닉네임</label> <input type="text" th:field="${siteUser.nickname}" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">이메일</label> <input type="email" th:field="${siteUser.email}" id="email" class="form-control">
+			</div>
+
+			<div class="mb-3">
+				<label for="file">프로필 이미지</label> <input type="file" id="file" name="file" class="form-control">
+			</div>
+			<button type="submit" onclick="alert('수정되었습니다.')" class="btn btn-primary">수정하기</button>
+			<a th:href="@{/}" class="btn btn-secondary">홈으로 돌아가기</a>
+		</form>
+	</div>
+
+	<script layout:fragment="script">
+		$("#file").on('change', function() {
+			var fileName = $("#file").val();
+			$(".upload-name").val(fileName);
+		});
+	</script>
+</html>

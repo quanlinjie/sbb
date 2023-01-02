@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- 부트스트랩 css-->
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}"> 
+
+<!-- sbb CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    
+ <!--마크다운에디터 설치-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    
+
+<title>게시판</title>
+</head>
+<body>
+	<!-- 네비게이션바 -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+	<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+	<th:block layout:fragment="content"></th:block>
+	<!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+	<!-- 부트스트랩 JS -->
+	<script th:src="@{/bootstrap.min.js}"></script>
+
+	<!-- 자바스크립트 Start -->
+	<th:block layout:fragment="script">
+	</th:block>
+	<!-- 자바스크립트 End -->
+</body>
+</html>
